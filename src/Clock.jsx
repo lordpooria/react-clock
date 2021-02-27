@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import mergeClassNames from 'merge-class-names';
-import { getHours, getMinutes, getSeconds } from '@wojtekmaj/date-utils';
+import React from "react";
+import PropTypes from "prop-types";
+import clsx from "clsx";
+import { getHours, getMinutes, getSeconds } from "@wojtekmaj/date-utils";
 
-import Hand from './Hand';
-import Mark from './Mark';
+import Hand from "./Hand";
+import Mark from "./Mark";
 
 import {
   isHandLength,
@@ -12,7 +12,30 @@ import {
   isHandWidth,
   isMarkLength,
   isMarkWidth,
-} from './shared/propTypes';
+} from "./shared/propTypes";
+import { createStyles, makeStyles } from "@material-ui/core";
+console.log("pooriahere");
+const useStyle = makeStyles((theme) =>
+  createStyles({
+    clockRoot: {
+      display: "block",
+      position: "relative",
+    },
+    face: {
+      position: "absolute",
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      backgroundColor: "rgba(0,0,0,0.3)",
+      border: "1px solid black",
+      borderRadius: "50%",
+    },
+    secondHand: {
+      backgroundColor: "red",
+    },
+  })
+);
 
 export default function Clock({
   className,
@@ -37,6 +60,7 @@ export default function Clock({
   size = 150,
   value,
 }) {
+  const classes = useStyle();
   function renderMinuteMarksFn() {
     if (!renderMinuteMarks) {
       return null;
@@ -54,7 +78,7 @@ export default function Clock({
             length={minuteMarksLength}
             name="minute"
             width={minuteMarksWidth}
-          />,
+          />
         );
       }
     }
@@ -76,7 +100,7 @@ export default function Clock({
           name="hour"
           number={renderNumbers ? i : null}
           width={hourMarksWidth}
-        />,
+        />
       );
     }
     return hourMarks;
@@ -84,7 +108,7 @@ export default function Clock({
 
   function renderFace() {
     return (
-      <div className="react-clock__face">
+      <div className={classes.face}>
         {renderMinuteMarksFn()}
         {renderHourMarksFn()}
       </div>
@@ -92,11 +116,9 @@ export default function Clock({
   }
 
   function renderHourHandFn() {
-    const angle = value ? (
-      (getHours(value) * 30)
-      + (getMinutes(value) / 2)
-      + (getSeconds(value) / 600)
-    ) : 0;
+    const angle = value
+      ? getHours(value) * 30 + getMinutes(value) / 2 + getSeconds(value) / 600
+      : 0;
 
     return (
       <Hand
@@ -114,11 +136,9 @@ export default function Clock({
       return null;
     }
 
-    const angle = value ? (
-      (getHours(value) * 360)
-      + (getMinutes(value) * 6)
-      + (getSeconds(value) / 10)
-    ) : 0;
+    const angle = value
+      ? getHours(value) * 360 + getMinutes(value) * 6 + getSeconds(value) / 10
+      : 0;
 
     return (
       <Hand
@@ -136,16 +156,14 @@ export default function Clock({
       return null;
     }
 
-    const angle = value ? (
-      (getMinutes(value) * 360)
-      + (getSeconds(value) * 6)
-    ) : 0;
+    const angle = value ? getMinutes(value) * 360 + getSeconds(value) * 6 : 0;
 
     return (
       <Hand
         angle={angle}
         length={secondHandLength}
         name="second"
+        classes={{body:classes.secondHand}}
         oppositeLength={secondHandOppositeLength}
         width={secondHandWidth}
       />
@@ -154,7 +172,7 @@ export default function Clock({
 
   return (
     <time
-      className={mergeClassNames('react-clock', className)}
+      className={clsx(classes.clockRoot, className)}
       dateTime={value instanceof Date ? value.toISOString() : value}
       style={{
         width: `${size}px`,
@@ -193,8 +211,5 @@ Clock.propTypes = {
   secondHandOppositeLength: isOppositeHandLength,
   secondHandWidth: isHandWidth,
   size: PropTypes.number,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.instanceOf(Date),
-  ]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
 };

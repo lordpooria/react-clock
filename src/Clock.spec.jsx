@@ -3,11 +3,13 @@ import { mount, shallow } from 'enzyme';
 
 import Clock from './Clock';
 
+/* eslint-disable comma-dangle */
+
 describe('Clock', () => {
   describe('<time> element', () => {
     it('is rendered properly', () => {
       const component = shallow(
-        <Clock />,
+        <Clock />
       );
 
       const time = component.find('time');
@@ -17,7 +19,7 @@ describe('Clock', () => {
 
     it('has 150px size by default', () => {
       const component = shallow(
-        <Clock />,
+        <Clock />
       );
 
       const time = component.find('time');
@@ -30,7 +32,7 @@ describe('Clock', () => {
       const size = 167;
 
       const component = shallow(
-        <Clock size={size} />,
+        <Clock size={size} />
       );
 
       const time = component.find('time');
@@ -43,7 +45,7 @@ describe('Clock', () => {
       const date = new Date();
 
       const component = shallow(
-        <Clock value={date} />,
+        <Clock value={date} />
       );
 
       const time = component.find('time');
@@ -55,7 +57,7 @@ describe('Clock', () => {
       const date = '22:17:00';
 
       const component = shallow(
-        <Clock value={date} />,
+        <Clock value={date} />
       );
 
       const time = component.find('time');
@@ -67,7 +69,7 @@ describe('Clock', () => {
   describe('clock face', () => {
     it('is rendered properly', () => {
       const component = shallow(
-        <Clock />,
+        <Clock />
       );
 
       const face = component.find('.react-clock__face');
@@ -77,7 +79,7 @@ describe('Clock', () => {
 
     it('has hour and minute marks by default', () => {
       const component = mount(
-        <Clock />,
+        <Clock />
       );
 
       const marks = component.find('.react-clock__mark');
@@ -91,7 +93,7 @@ describe('Clock', () => {
 
     it('does not have hour numbers rendered by default', () => {
       const component = mount(
-        <Clock />,
+        <Clock />
       );
 
       const hourMarkNumbers = component.find('.react-clock__mark__number');
@@ -101,7 +103,7 @@ describe('Clock', () => {
 
     it('has hour numbers given renderNumbers flag', () => {
       const component = mount(
-        <Clock renderNumbers />,
+        <Clock renderNumbers />
       );
 
       const hourMarks = component.find('.react-clock__hour-mark');
@@ -116,7 +118,7 @@ describe('Clock', () => {
 
     it('has only minute marks when renderHourMarks is false', () => {
       const component = mount(
-        <Clock renderHourMarks={false} />,
+        <Clock renderHourMarks={false} />
       );
 
       const marks = component.find('.react-clock__mark');
@@ -130,7 +132,7 @@ describe('Clock', () => {
 
     it('has only hour marks when renderMinuteMarks is false', () => {
       const component = mount(
-        <Clock renderMinuteMarks={false} />,
+        <Clock renderMinuteMarks={false} />
       );
 
       const marks = component.find('.react-clock__mark');
@@ -147,7 +149,7 @@ describe('Clock', () => {
         <Clock
           renderHourMarks={false}
           renderMinuteMarks={false}
-        />,
+        />
       );
 
       const marks = component.find('.react-clock__mark');
@@ -163,13 +165,13 @@ describe('Clock', () => {
   const minuteSecondAngle = minuteAngle / 60;
   const secondAngle = fullCircle / 60;
 
-  const getDeg = (transform) => parseFloat(transform.match(/rotate\(([0-9.]*)deg\)/)[1]);
-  const getAngle = (hand) => getDeg(hand.prop('style').transform) % 360;
+  const getDeg = transform => parseFloat(transform.match(/rotate\(([0-9.]*)deg\)/)[1]);
+  const getAngle = hand => getDeg(hand.prop('style').transform) % 360;
 
   describe('hour hand', () => {
     it('is rendered properly', () => {
       const component = mount(
-        <Clock />,
+        <Clock />
       );
 
       const face = component.find('.react-clock__hour-hand');
@@ -183,7 +185,7 @@ describe('Clock', () => {
       const date = new Date(2017, 0, 1, hour, minute);
 
       const component = mount(
-        <Clock value={date} />,
+        <Clock value={date} />
       );
 
       const hand = component.find('.react-clock__hour-hand');
@@ -195,7 +197,7 @@ describe('Clock', () => {
   describe('minute hand', () => {
     it('is rendered properly', () => {
       const component = mount(
-        <Clock />,
+        <Clock />
       );
 
       const face = component.find('.react-clock__minute-hand');
@@ -205,7 +207,7 @@ describe('Clock', () => {
 
     it('is not rendered when renderMinuteHand is false', () => {
       const component = mount(
-        <Clock renderMinuteHand={false} />,
+        <Clock renderMinuteHand={false} />
       );
 
       const face = component.find('.react-clock__minute-hand');
@@ -220,7 +222,7 @@ describe('Clock', () => {
       const date = new Date(2017, 0, 1, hour, minute, second);
 
       const component = mount(
-        <Clock value={date} />,
+        <Clock value={date} />
       );
 
       const hand = component.find('.react-clock__minute-hand');
@@ -232,7 +234,7 @@ describe('Clock', () => {
   describe('second hand', () => {
     it('is rendered properly', () => {
       const component = mount(
-        <Clock />,
+        <Clock />
       );
 
       const face = component.find('.react-clock__second-hand');
@@ -242,7 +244,7 @@ describe('Clock', () => {
 
     it('is not rendered when renderSecondHand is false', () => {
       const component = mount(
-        <Clock renderSecondHand={false} />,
+        <Clock renderSecondHand={false} />
       );
 
       const face = component.find('.react-clock__second-hand');
@@ -257,7 +259,7 @@ describe('Clock', () => {
       const date = new Date(2017, 0, 1, hour, minute, second);
 
       const component = mount(
-        <Clock value={date} />,
+        <Clock value={date} />
       );
 
       const hand = component.find('.react-clock__second-hand');
