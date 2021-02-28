@@ -6653,38 +6653,38 @@ Clock.displayName = 'Clock';
 
 export default Clock;
 //# sourceMappingURL=index.js.map
-enderHourHandFn() {
-        var angle = value
-            ? umd.getHours(value) * 30 + umd.getMinutes(value) / 2 + umd.getSeconds(value) / 600
-            : 0;
-        return (React__default['default'].createElement(Hand, { angle: angle, length: hourHandLength, name: "hour", oppositeLength: hourHandOppositeLength, width: hourHandWidth }));
-    }
-    function renderMinuteHandFn() {
-        if (!renderMinuteHand) {
-            return null;
-        }
-        var angle = value
-            ? umd.getHours(value) * 360 + umd.getMinutes(value) * 6 + umd.getSeconds(value) / 10
-            : 0;
-        return (React__default['default'].createElement(Hand, { angle: angle, length: minuteHandLength, name: "minute", oppositeLength: minuteHandOppositeLength, width: minuteHandWidth }));
-    }
-    function renderSecondHandFn() {
-        if (!renderSecondHand) {
-            return null;
-        }
-        var angle = value ? umd.getMinutes(value) * 360 + umd.getSeconds(value) * 6 : 0;
-        return (React__default['default'].createElement(Hand, { angle: angle, length: secondHandLength, name: "second", classes: { body: classes.secondHand }, oppositeLength: secondHandOppositeLength, width: secondHandWidth }));
-    }
-    return (React__default['default'].createElement("time", { className: clsx(classes.clockRoot, className), dateTime: value instanceof Date ? value.toISOString() : value, style: {
-            width: size + "px",
-            height: size + "px",
-        } },
-        renderFace(),
-        renderHourHandFn(),
-        renderMinuteHandFn(),
-        renderSecondHandFn()));
-}
-Clock.displayName = 'Clock';
+// enderHourHandFn() {
+//         var angle = value
+//             ? umd.getHours(value) * 30 + umd.getMinutes(value) / 2 + umd.getSeconds(value) / 600
+//             : 0;
+//         return (React__default['default'].createElement(Hand, { angle: angle, length: hourHandLength, name: "hour", oppositeLength: hourHandOppositeLength, width: hourHandWidth }));
+//     }
+//     function renderMinuteHandFn() {
+//         if (!renderMinuteHand) {
+//             return null;
+//         }
+//         var angle = value
+//             ? umd.getHours(value) * 360 + umd.getMinutes(value) * 6 + umd.getSeconds(value) / 10
+//             : 0;
+//         return (React__default['default'].createElement(Hand, { angle: angle, length: minuteHandLength, name: "minute", oppositeLength: minuteHandOppositeLength, width: minuteHandWidth }));
+//     }
+//     function renderSecondHandFn() {
+//         if (!renderSecondHand) {
+//             return null;
+//         }
+//         var angle = value ? umd.getMinutes(value) * 360 + umd.getSeconds(value) * 6 : 0;
+//         return (React__default['default'].createElement(Hand, { angle: angle, length: secondHandLength, name: "second", classes: { body: classes.secondHand }, oppositeLength: secondHandOppositeLength, width: secondHandWidth }));
+//     }
+//     return (React__default['default'].createElement("time", { className: clsx(classes.clockRoot, className), dateTime: value instanceof Date ? value.toISOString() : value, style: {
+//             width: size + "px",
+//             height: size + "px",
+//         } },
+//         renderFace(),
+//         renderHourHandFn(),
+//         renderMinuteHandFn(),
+//         renderSecondHandFn()));
+// }
+// Clock.displayName = 'Clock';
 
-exports.default = Clock;
+// exports.default = Clock;
 //# sourceMappingURL=index.js.map
