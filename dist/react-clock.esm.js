@@ -256,6 +256,7 @@ function Clock(_ref) {
     }
   }, renderFace(), renderHourHandFn(), renderMinuteHandFn(), renderSecondHandFn());
 }
+Clock.displayName = 'Clock';
 
 export default Clock;
 //# sourceMappingURL=react-clock.esm.js.map

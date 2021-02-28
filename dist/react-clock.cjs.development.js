@@ -262,6 +262,7 @@ function Clock(_ref) {
     }
   }, renderFace(), renderHourHandFn(), renderMinuteHandFn(), renderSecondHandFn());
 }
+Clock.displayName = 'Clock';
 
 exports.default = Clock;
 //# sourceMappingURL=react-clock.cjs.development.js.map
