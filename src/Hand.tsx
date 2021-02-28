@@ -1,27 +1,23 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-import { isHandLength } from "./shared/propTypes";
-import { createStyles, makeStyles } from "@material-ui/core";
+import { createUseStyles } from "react-jss";
 import clsx from "clsx";
 import { HandleProps } from "./HandTypes";
 
-const useStyle = makeStyles(() =>
-  createStyles({
-    hand: {
-      position: "absolute",
-      top: 0,
-      bottom: 0,
-      left: "50%",
-      right: "50%",
-    },
-    body: {
-      position: "absolute",
-      backgroundColor: "black",
-      transform: "translateX(-50%)",
-    },
-  })
-);
+const useStyle = createUseStyles({
+  hand: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    left: "50%",
+    right: "50%",
+  },
+  body: {
+    position: "absolute",
+    backgroundColor: "black",
+    transform: "translateX(-50%)",
+  },
+});
 
 export default function Hand({
   angle = 0,
@@ -50,15 +46,3 @@ export default function Hand({
     </div>
   );
 }
-
-Hand.propTypes = {
-  angle: PropTypes.number,
-  length: isHandLength,
-  name: PropTypes.string.isRequired,
-  oppositeLength: isHandLength,
-  width: PropTypes.number,
-  classes: PropTypes.shape({
-    hand: PropTypes.string,
-    body: PropTypes.string,
-  }),
-};

@@ -1,75 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { getHours, getMinutes, getSeconds } from '@wojtekmaj/date-utils';
-import { makeStyles, createStyles } from '@material-ui/core';
+import { createUseStyles } from 'react-jss';
 
-/* eslint-disable import/prefer-default-export */
-
-/**
- * Checks whether a variable is defined.
- *
- * @param {*} variable Variable to check
- */
-var isDefined = function isDefined(variable) {
-  return typeof variable !== 'undefined';
-};
-
-var isNumberBetween = function isNumberBetween(min, max) {
-  return function (props, propName, componentName) {
-    var value = props[propName];
-
-    if (isDefined(value)) {
-      if (typeof value !== 'number') {
-        return new Error("Invalid prop `" + propName + "` of type `" + typeof value + "` supplied to `" + componentName + "`, expected `number`.");
-      }
-
-      if (value < min || value > max) {
-        return new Error("Invalid prop `" + propName + "` of type `" + typeof value + "` supplied to `" + componentName + "`, length must be between " + min + " and " + max + ".");
-      }
-    } // Everything is fine
-
-
-    return null;
-  };
-};
-
-var isHandLength = /*#__PURE__*/isNumberBetween(0, 100);
-var isOppositeHandLength = /*#__PURE__*/isNumberBetween(-100, 100);
-var isHandWidth = function isHandWidth(props, propName, componentName) {
-  var width = props[propName];
-
-  if (isDefined(width)) {
-    if (typeof width !== 'number') {
-      return new Error("Invalid prop `" + propName + "` of type `" + typeof width + "` supplied to `" + componentName + "`, expected `number`.");
-    }
-
-    if (width < 0) {
-      return new Error("Invalid prop `" + propName + "` of type `" + typeof width + "` supplied to `" + componentName + "`, width must be greater or equal to 0.");
-    }
-  } // Everything is fine
-
-
-  return null;
-};
-var isMarkLength = isHandLength;
-var isMarkWidth = isHandWidth;
-
-var useStyle = /*#__PURE__*/makeStyles(function () {
-  return createStyles({
-    hand: {
-      position: "absolute",
-      top: 0,
-      bottom: 0,
-      left: "50%",
-      right: "50%"
-    },
-    body: {
-      position: "absolute",
-      backgroundColor: "black",
-      transform: "translateX(-50%)"
-    }
-  });
+var useStyle = /*#__PURE__*/createUseStyles({
+  hand: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    left: "50%",
+    right: "50%"
+  },
+  body: {
+    position: "absolute",
+    backgroundColor: "black",
+    transform: "translateX(-50%)"
+  }
 });
 function Hand(_ref) {
   var _ref$angle = _ref.angle,
@@ -96,39 +42,26 @@ function Hand(_ref) {
     }
   }));
 }
-Hand.propTypes = {
-  angle: PropTypes.number,
-  length: isHandLength,
-  name: PropTypes.string.isRequired,
-  oppositeLength: isHandLength,
-  width: PropTypes.number,
-  classes: /*#__PURE__*/PropTypes.shape({
-    hand: PropTypes.string,
-    body: PropTypes.string
-  })
-};
 
-var useStyle$1 = /*#__PURE__*/makeStyles(function () {
-  return createStyles({
-    mark: {
-      position: "absolute",
-      top: 0,
-      bottom: 0,
-      left: "50%",
-      right: "50%"
-    },
-    body: {
-      position: "absolute",
-      backgroundColor: "black",
-      transform: "translateX(-50%)"
-    },
-    number: {
-      position: "absolute",
-      left: "-40px",
-      width: "80px",
-      textAlign: "center"
-    }
-  });
+var useStyle$1 = /*#__PURE__*/createUseStyles({
+  mark: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    left: "50%",
+    right: "50%"
+  },
+  body: {
+    position: "absolute",
+    backgroundColor: "black",
+    transform: "translateX(-50%)"
+  },
+  number: {
+    position: "absolute",
+    left: "-40px",
+    width: "80px",
+    textAlign: "center"
+  }
 });
 function Mark(_ref) {
   var _ref$angle = _ref.angle,
@@ -160,38 +93,25 @@ function Mark(_ref) {
     }
   }, number));
 }
-Mark.propTypes = {
-  angle: PropTypes.number,
-  length: isMarkLength,
-  name: PropTypes.string.isRequired,
-  number: PropTypes.number,
-  width: isMarkWidth,
-  classes: /*#__PURE__*/PropTypes.shape({
-    mark: PropTypes.string,
-    body: PropTypes.string
-  })
-};
 
-var useStyle$2 = /*#__PURE__*/makeStyles(function () {
-  return createStyles({
-    clockRoot: {
-      display: "block",
-      position: "relative"
-    },
-    face: {
-      position: "absolute",
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      backgroundColor: "rgba(0,0,0,0.3)",
-      border: "1px solid black",
-      borderRadius: "50%"
-    },
-    secondHand: {
-      backgroundColor: "red"
-    }
-  });
+var useStyle$2 = /*#__PURE__*/createUseStyles({
+  clockRoot: {
+    display: "block",
+    position: "relative"
+  },
+  face: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: "rgba(0,0,0,0.3)",
+    border: "1px solid black",
+    borderRadius: "50%"
+  },
+  secondHand: {
+    backgroundColor: "red"
+  }
 });
 function Clock(_ref) {
   var className = _ref.className,
@@ -336,29 +256,6 @@ function Clock(_ref) {
     }
   }, renderFace(), renderHourHandFn(), renderMinuteHandFn(), renderSecondHandFn());
 }
-Clock.propTypes = {
-  className: /*#__PURE__*/PropTypes.oneOfType([PropTypes.string, /*#__PURE__*/PropTypes.arrayOf(PropTypes.string)]),
-  hourHandLength: isHandLength,
-  hourHandOppositeLength: isOppositeHandLength,
-  hourHandWidth: isHandWidth,
-  hourMarksLength: isMarkLength,
-  hourMarksWidth: isMarkWidth,
-  minuteHandLength: isHandLength,
-  minuteHandOppositeLength: isOppositeHandLength,
-  minuteHandWidth: isHandWidth,
-  minuteMarksLength: isMarkLength,
-  minuteMarksWidth: isMarkWidth,
-  renderHourMarks: PropTypes.bool,
-  renderMinuteHand: PropTypes.bool,
-  renderMinuteMarks: PropTypes.bool,
-  renderNumbers: PropTypes.bool,
-  renderSecondHand: PropTypes.bool,
-  secondHandLength: isHandLength,
-  secondHandOppositeLength: isOppositeHandLength,
-  secondHandWidth: isHandWidth,
-  size: PropTypes.number,
-  value: /*#__PURE__*/PropTypes.oneOfType([PropTypes.string, /*#__PURE__*/PropTypes.instanceOf(Date)])
-};
 
 export default Clock;
 //# sourceMappingURL=react-clock.esm.js.map

@@ -1,43 +1,32 @@
 import React from "react";
-import PropTypes from "prop-types";
 import clsx from "clsx";
 import { getHours, getMinutes, getSeconds } from "@wojtekmaj/date-utils";
 
 import Hand from "./Hand";
 import Mark from "./Mark";
 
-import {
-  isHandLength,
-  isOppositeHandLength,
-  isHandWidth,
-  isMarkLength,
-  isMarkWidth,
-} from "./shared/propTypes";
-
-import { createStyles, makeStyles } from "@material-ui/core";
+import { createUseStyles } from "react-jss";
 import { ClockProps } from "./types";
 
-const useStyle = makeStyles(() =>
-  createStyles({
-    clockRoot: {
-      display: "block",
-      position: "relative",
-    },
-    face: {
-      position: "absolute",
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      backgroundColor: "rgba(0,0,0,0.3)",
-      border: "1px solid black",
-      borderRadius: "50%",
-    },
-    secondHand: {
-      backgroundColor: "red",
-    },
-  })
-);
+const useStyle = createUseStyles({
+  clockRoot: {
+    display: "block",
+    position: "relative",
+  },
+  face: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: "rgba(0,0,0,0.3)",
+    border: "1px solid black",
+    borderRadius: "50%",
+  },
+  secondHand: {
+    backgroundColor: "red",
+  },
+});
 
 export default function Clock({
   className,
@@ -188,30 +177,3 @@ export default function Clock({
     </time>
   );
 }
-
-Clock.propTypes = {
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
-  hourHandLength: isHandLength,
-  hourHandOppositeLength: isOppositeHandLength,
-  hourHandWidth: isHandWidth,
-  hourMarksLength: isMarkLength,
-  hourMarksWidth: isMarkWidth,
-  minuteHandLength: isHandLength,
-  minuteHandOppositeLength: isOppositeHandLength,
-  minuteHandWidth: isHandWidth,
-  minuteMarksLength: isMarkLength,
-  minuteMarksWidth: isMarkWidth,
-  renderHourMarks: PropTypes.bool,
-  renderMinuteHand: PropTypes.bool,
-  renderMinuteMarks: PropTypes.bool,
-  renderNumbers: PropTypes.bool,
-  renderSecondHand: PropTypes.bool,
-  secondHandLength: isHandLength,
-  secondHandOppositeLength: isOppositeHandLength,
-  secondHandWidth: isHandWidth,
-  size: PropTypes.number,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
-};
