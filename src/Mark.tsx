@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import clsx from "clsx";
 import { isMarkLength, isMarkWidth } from "./shared/propTypes";
 import { createStyles, makeStyles } from "@material-ui/core";
+import { MarkProps } from "./MarkTypes";
 
-const useStyle = makeStyles((theme) =>
+const useStyle = makeStyles(() =>
   createStyles({
     mark: {
       position: "absolute",
@@ -30,11 +31,11 @@ const useStyle = makeStyles((theme) =>
 export default function Mark({
   angle = 0,
   length = 10,
-  name,
+  // name,
   width = 1,
   number,
   classes,
-}) {
+}: MarkProps) {
   const markClasses = useStyle();
   return (
     <div

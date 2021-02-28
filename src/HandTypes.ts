@@ -1,4 +1,4 @@
-export interface Handle {
+export interface HandleProps {
   angle?: number;
   name?: string;
   length?: number;

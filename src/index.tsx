@@ -13,9 +13,11 @@ import {
   isMarkLength,
   isMarkWidth,
 } from "./shared/propTypes";
+
 import { createStyles, makeStyles } from "@material-ui/core";
-console.log("pooriahere");
-const useStyle = makeStyles((theme) =>
+import { ClockProps } from "./types";
+
+const useStyle = makeStyles(() =>
   createStyles({
     clockRoot: {
       display: "block",
@@ -59,7 +61,7 @@ export default function Clock({
   secondHandWidth = 1,
   size = 150,
   value,
-}) {
+}: ClockProps) {
   const classes = useStyle();
   function renderMinuteMarksFn() {
     if (!renderMinuteMarks) {
@@ -163,7 +165,7 @@ export default function Clock({
         angle={angle}
         length={secondHandLength}
         name="second"
-        classes={{body:classes.secondHand}}
+        classes={{ body: classes.secondHand }}
         oppositeLength={secondHandOppositeLength}
         width={secondHandWidth}
       />

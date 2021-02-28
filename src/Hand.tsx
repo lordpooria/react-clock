@@ -4,8 +4,9 @@ import PropTypes from "prop-types";
 import { isHandLength } from "./shared/propTypes";
 import { createStyles, makeStyles } from "@material-ui/core";
 import clsx from "clsx";
+import { HandleProps } from "./HandTypes";
 
-const useStyle = makeStyles((theme) =>
+const useStyle = makeStyles(() =>
   createStyles({
     hand: {
       position: "absolute",
@@ -24,12 +25,12 @@ const useStyle = makeStyles((theme) =>
 
 export default function Hand({
   angle = 0,
-  name,
+  // name,
   length = 100,
   oppositeLength = 10,
   width = 1,
   classes,
-}) {
+}: HandleProps) {
   const handClasses = useStyle();
   return (
     <div

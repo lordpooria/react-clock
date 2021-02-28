@@ -4,8 +4,8 @@
   "description": "An analog clock for your React app.",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "source": "src/index.ts",
-  "typings": "dist/index.d.ts",
+  "source": "src/index.tsx",
+  "typings": "dist/types.d.ts",
   "sideEffects": [
     "*.css",
     "*.less"
