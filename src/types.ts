@@ -110,3 +110,5 @@ export interface ClockProps<T = ClockValue> {
      */
     value: T;
 }
+
+// export default function Clock(props: ClockProps): JSX.Element;

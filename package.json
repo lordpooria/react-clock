@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "source": "src/index.tsx",
-  "typings": "dist/types.d.ts",
+  "typings": "dist/index.d.ts",
   "sideEffects": [
     "*.css",
     "*.less"
