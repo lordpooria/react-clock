@@ -7,10 +7,16 @@ import { Mark } from "./Mark";
 
 import { createUseStyles } from "react-jss";
 import { ClockProps } from "./types";
-
-const MIDDLE_CIRCLE_RATIO = 17;
-const FONT_SIZE_RATIO = 16;
-const ORANGE = "#F3A829";
+import {
+  FONT_SIZE_RATIO,
+  MIDDLE_CIRCLE_RATIO,
+  ORANGE,
+  HOUR_HAND_WIDTH_RATIO,
+  HOUR_MARK_WIDTH_RATIO,
+  MINUTE_HAND_WIDTH_RATIO,
+  MINUTE_MARK_WIDTH_RATIO,
+  SECOND_HAND_WIDTH_RATIO,
+} from "./constants";
 
 const useStyle = createUseStyles({
   clockRoot: {
@@ -44,14 +50,14 @@ export const Clock = ({
   classes,
   hourHandLength = 70,
   hourHandOppositeLength,
-  hourHandWidth = 14,
+  hourHandWidthRatio = HOUR_HAND_WIDTH_RATIO,
   hourMarksLength = 13,
-  hourMarksWidth = 7,
+  hourMarksWidthRatio = HOUR_MARK_WIDTH_RATIO,
   minuteHandLength = 90,
   minuteHandOppositeLength,
-  minuteHandWidth = 8,
+  minuteHandWidthRatio = MINUTE_HAND_WIDTH_RATIO,
   minuteMarksLength = 7,
-  minuteMarksWidth = 4,
+  minuteMarksWidthRatio = MINUTE_MARK_WIDTH_RATIO,
   renderHourMarks = true,
   renderMinuteHand = true,
   renderMinuteMarks = true,
@@ -61,7 +67,7 @@ export const Clock = ({
   renderSecondHand = true,
   secondHandLength = 97,
   secondHandOppositeLength,
-  secondHandWidth = 2,
+  secondHandWidthRatio = SECOND_HAND_WIDTH_RATIO,
   size = 150,
   value,
 }: ClockProps) => {
@@ -82,7 +88,7 @@ export const Clock = ({
             angle={i * 6}
             length={minuteMarksLength}
             name="minute"
-            width={minuteMarksWidth}
+            width={size / minuteMarksWidthRatio}
             classes={classes?.marker}
           />
         );
@@ -105,7 +111,7 @@ export const Clock = ({
           length={hourMarksLength}
           name="hour"
           number={renderNumbers ? i : null}
-          width={hourMarksWidth}
+          width={size / hourMarksWidthRatio}
           classes={classes?.marker}
         />
       );
@@ -133,7 +139,7 @@ export const Clock = ({
         length={hourHandLength}
         name="hour"
         oppositeLength={hourHandOppositeLength}
-        width={hourHandWidth}
+        width={size / hourHandWidthRatio}
         classes={classes?.handle}
       />
     );
@@ -154,7 +160,7 @@ export const Clock = ({
         length={minuteHandLength}
         name="minute"
         oppositeLength={minuteHandOppositeLength}
-        width={minuteHandWidth}
+        width={size / minuteHandWidthRatio}
         classes={classes?.handle}
       />
     );
@@ -174,7 +180,7 @@ export const Clock = ({
         name="second"
         classes={{ body: clockClasses.secondHand, ...classes?.handle }}
         oppositeLength={secondHandOppositeLength}
-        width={secondHandWidth}
+        width={size / secondHandWidthRatio}
       />
     );
   }

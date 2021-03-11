@@ -33,20 +33,19 @@ export interface ClockProps<T = ClockValue> {
    */
   hourHandOppositeLength?: number;
   /**
-   * Hour hand width, in pixels.
-   * @default 4
+   * Hour hand width ratio respect to size.
+   *
    */
-  hourHandWidth?: number;
+  hourHandWidthRatio?: number;
   /**
    * Hour marks length, in %.
    * @default 10
    */
   hourMarksLength?: number;
   /**
-   * Hour marks width, in pixels.
-   * @default 3
-   */
-  hourMarksWidth?: number;
+   * Hour marks width ratio respect to size.
+   *    */
+  hourMarksWidthRatio?: number;
   /**
    * Minute hand length, in %.
    * @default 70
@@ -58,20 +57,20 @@ export interface ClockProps<T = ClockValue> {
    */
   minuteHandOppositeLength?: number;
   /**
-   * Minute hand width, in pixels.
-   * @default 2
+   * Minute hand width ratio respect to size.
+   * 
    */
-  minuteHandWidth?: number;
+  minuteHandWidthRatio?: number;
   /**
    * Minute marks length, in %.
    * @default 6
    */
   minuteMarksLength?: number;
   /**
-   * Minute marks width, in pixels.
-   * @default 1
+   * Minute marks width ratio respect to size.
+   * 
    */
-  minuteMarksWidth?: number;
+  minuteMarksWidthRatio?: number;
   /**
    * Whether hour marks shall be rendered.
    * @default true
@@ -108,10 +107,10 @@ export interface ClockProps<T = ClockValue> {
    */
   secondHandOppositeLength?: number;
   /**
-   * Second hand width, in pixels.
-   * @default 1
+   * Second hand width ratio respect to size.
+   *
    */
-  secondHandWidth?: number;
+  secondHandWidthRatio?: number;
   /**
    * Clock size, in pixels.
    * @default 150
@@ -119,15 +118,15 @@ export interface ClockProps<T = ClockValue> {
   size?: number;
   /**
    * Clock size, in pixels. this value divided by size result the size of middle circle
-   * @default 17
+   * 
    */
   middleCircleRatio?: number;
   /**
    * number if prop render number is true has a value based on size that is ratio
-   * of size default is 16
-   * @default 16
+   * of size 
+   * 
    */
-   fontSizeRatio?: number;
+  fontSizeRatio?: number;
   /**
    * Clock value. Must be provided.
    */
