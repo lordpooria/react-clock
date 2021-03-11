@@ -13,20 +13,23 @@ const useStyle = createUseStyles({
   },
   body: {
     position: "absolute",
-    backgroundColor: "black",
+    backgroundColor: "#000",
     transform: "translateX(-50%)",
+    borderRadius: "99em",
+    // boxShadow: "2px 2px 5px rgba(0,0,0,0.4)",
   },
   number: {
     position: "absolute",
     left: "-40px",
     width: "80px",
     textAlign: "center",
+    // textShadow: "2px 2px 5px rgba(0,0,0,0.4)",
   },
 });
 
 export default function Mark({
   angle = 0,
-  length = 10,
+  length,
   // name,
   width = 1,
   number,

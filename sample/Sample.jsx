@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useSetInterval } from '@wojtekmaj/react-hooks';
-import Clock from 'react-clock';
+import Clock from '../src/Clock';
 
-import './Sample.less';
+// import './Sample.less';
 
 export default function Sample() {
   const [value, onChange] = useState(new Date());
 
-  useSetInterval(() => {
-    const now = new Date();
-    onChange(now);
-  }, 1000);
+  // useSetInterval(() => {
+  //   const now = new Date();
+  //   onChange(now);
+  // }, 1000);
 
   return (
     <div className="Sample">

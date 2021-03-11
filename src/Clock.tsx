@@ -8,10 +8,16 @@ import Mark from "./Mark";
 import { createUseStyles } from "react-jss";
 import { ClockProps } from "./types";
 
+const MIDDLE_CIRCLE_RATIO = 17;
+const FONT_SIZE_RATIO = 16;
+const ORANGE = "#F3A829";
+
 const useStyle = createUseStyles({
   clockRoot: {
     display: "block",
     position: "relative",
+    fontFamily: "arial",
+    fontWeight: 500,
   },
   face: {
     position: "absolute",
@@ -19,39 +25,47 @@ const useStyle = createUseStyles({
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: "rgba(0,0,0,0.3)",
-    border: "1px solid black",
+    backgroundColor: "#FFF",
     borderRadius: "50%",
   },
   secondHand: {
-    backgroundColor: "red",
+    backgroundColor: ORANGE,
+  },
+  mark: {},
+  middleCircle: {
+    backgroundColor: ORANGE,
+    position: "absolute",
+    boxShadow: "1px 1px 1px rgba(0,0,0,0.3)",
   },
 });
 
 export default function Clock({
   className,
-  hourHandLength = 50,
+  classes,
+  hourHandLength = 70,
   hourHandOppositeLength,
-  hourHandWidth = 4,
-  hourMarksLength = 10,
-  hourMarksWidth = 3,
-  minuteHandLength = 70,
+  hourHandWidth = 14,
+  hourMarksLength = 13,
+  hourMarksWidth = 7,
+  minuteHandLength = 90,
   minuteHandOppositeLength,
-  minuteHandWidth = 2,
-  minuteMarksLength = 6,
-  minuteMarksWidth = 1,
+  minuteHandWidth = 8,
+  minuteMarksLength = 7,
+  minuteMarksWidth = 4,
   renderHourMarks = true,
   renderMinuteHand = true,
   renderMinuteMarks = true,
   renderNumbers,
+  middleCircleRatio = MIDDLE_CIRCLE_RATIO,
+  fontSizeRatio = FONT_SIZE_RATIO,
   renderSecondHand = true,
-  secondHandLength = 90,
+  secondHandLength = 97,
   secondHandOppositeLength,
-  secondHandWidth = 1,
+  secondHandWidth = 2,
   size = 150,
   value,
 }: ClockProps) {
-  const classes = useStyle();
+  const clockClasses = useStyle();
   function renderMinuteMarksFn() {
     if (!renderMinuteMarks) {
       return null;
@@ -69,6 +83,7 @@ export default function Clock({
             length={minuteMarksLength}
             name="minute"
             width={minuteMarksWidth}
+            classes={classes?.marker}
           />
         );
       }
@@ -91,6 +106,7 @@ export default function Clock({
           name="hour"
           number={renderNumbers ? i : null}
           width={hourMarksWidth}
+          classes={classes?.marker}
         />
       );
     }
@@ -99,7 +115,7 @@ export default function Clock({
 
   function renderFace() {
     return (
-      <div className={classes.face}>
+      <div className={clockClasses.face}>
         {renderMinuteMarksFn()}
         {renderHourMarksFn()}
       </div>
@@ -118,6 +134,7 @@ export default function Clock({
         name="hour"
         oppositeLength={hourHandOppositeLength}
         width={hourHandWidth}
+        classes={classes?.handle}
       />
     );
   }
@@ -138,6 +155,7 @@ export default function Clock({
         name="minute"
         oppositeLength={minuteHandOppositeLength}
         width={minuteHandWidth}
+        classes={classes?.handle}
       />
     );
   }
@@ -154,28 +172,44 @@ export default function Clock({
         angle={angle}
         length={secondHandLength}
         name="second"
-        classes={{ body: classes.secondHand }}
+        classes={{ body: clockClasses.secondHand, ...classes?.handle }}
         oppositeLength={secondHandOppositeLength}
         width={secondHandWidth}
+      />
+    );
+  }
+  function renderMiddleCircle() {
+    return (
+      <div
+        className={clsx(clockClasses.middleCircle, classes?.middleCircle)}
+        style={{
+          width: size / middleCircleRatio,
+          height: size / middleCircleRatio,
+          borderRadius: size / (2 * middleCircleRatio),
+          left: `calc(50% - ${size / (2 * middleCircleRatio)}px)`,
+          top: `calc(50% - ${size / (2 * middleCircleRatio)}px)`,
+        }}
       />
     );
   }
 
   return (
     <time
-      className={clsx(classes.clockRoot, className)}
+      className={clsx(clockClasses.clockRoot, className, classes?.clock?.root)}
       dateTime={value instanceof Date ? value.toISOString() : value}
       style={{
         width: `${size}px`,
         height: `${size}px`,
+        fontSize: size / fontSizeRatio,
       }}
     >
       {renderFace()}
       {renderHourHandFn()}
       {renderMinuteHandFn()}
       {renderSecondHandFn()}
+      {renderMiddleCircle()}
     </time>
   );
 }
 
-Clock.displayName = 'Clock';
+Clock.displayName = "Clock";

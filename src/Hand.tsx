@@ -16,6 +16,8 @@ const useStyle = createUseStyles({
     position: "absolute",
     backgroundColor: "black",
     transform: "translateX(-50%)",
+    boxShadow: "2px 2px 5px rgba(0,0,0,0.8)",
+    borderRadius: "99em",
   },
 });
 
