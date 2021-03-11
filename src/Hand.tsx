@@ -21,14 +21,14 @@ const useStyle = createUseStyles({
   },
 });
 
-export default function Hand({
+export const Hand = ({
   angle = 0,
   // name,
   length = 100,
   oppositeLength = 10,
   width = 1,
   classes,
-}: HandleProps) {
+}: HandleProps) => {
   const handClasses = useStyle();
   return (
     <div
@@ -47,4 +47,4 @@ export default function Hand({
       />
     </div>
   );
-}
+};

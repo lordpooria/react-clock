@@ -1,24 +1,10 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var React = require('react');
-var _extends$1 = require('@babel/runtime/helpers/esm/extends');
-var _inheritsLoose$1 = require('@babel/runtime/helpers/esm/inheritsLoose');
-var _objectWithoutPropertiesLoose = require('@babel/runtime/helpers/esm/objectWithoutPropertiesLoose');
-var _createClass = require('@babel/runtime/helpers/esm/createClass');
-var _assertThisInitialized$1 = require('@babel/runtime/helpers/esm/assertThisInitialized');
-var _toConsumableArray = require('@babel/runtime/helpers/esm/toConsumableArray');
-
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
-var _extends__default = /*#__PURE__*/_interopDefaultLegacy(_extends$1);
-var _inheritsLoose__default = /*#__PURE__*/_interopDefaultLegacy(_inheritsLoose$1);
-var _objectWithoutPropertiesLoose__default = /*#__PURE__*/_interopDefaultLegacy(_objectWithoutPropertiesLoose);
-var _createClass__default = /*#__PURE__*/_interopDefaultLegacy(_createClass);
-var _assertThisInitialized__default = /*#__PURE__*/_interopDefaultLegacy(_assertThisInitialized$1);
-var _toConsumableArray__default = /*#__PURE__*/_interopDefaultLegacy(_toConsumableArray);
+import React, { createContext, useRef, useContext, useMemo, useDebugValue, useEffect, useLayoutEffect } from 'react';
+import _extends$1 from '@babel/runtime/helpers/esm/extends';
+import _inheritsLoose$1 from '@babel/runtime/helpers/esm/inheritsLoose';
+import _objectWithoutPropertiesLoose from '@babel/runtime/helpers/esm/objectWithoutPropertiesLoose';
+import _createClass from '@babel/runtime/helpers/esm/createClass';
+import _assertThisInitialized$1 from '@babel/runtime/helpers/esm/assertThisInitialized';
+import _toConsumableArray from '@babel/runtime/helpers/esm/toConsumableArray';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -1833,7 +1819,7 @@ function createThemeProvider(context) {
 
       _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderProvider", function (outerTheme) {
         var children = _this.props.children;
-        return React__default['default'].createElement(context.Provider, {
+        return React.createElement(context.Provider, {
           value: _this.getTheme(outerTheme)
         }, children);
       });
@@ -1870,11 +1856,11 @@ function createThemeProvider(context) {
         return null;
       }
 
-      return React__default['default'].createElement(context.Consumer, null, this.renderProvider);
+      return React.createElement(context.Consumer, null, this.renderProvider);
     };
 
     return ThemeProvider;
-  }(React__default['default'].Component);
+  }(React.Component);
 
   if (process.env.NODE_ENV !== 'production') {
     ThemeProvider.propTypes = {
@@ -1889,10 +1875,10 @@ function createThemeProvider(context) {
 
 function createWithTheme(context) {
   return function hoc(Component) {
-    var withTheme = React__default['default'].forwardRef(function (props, ref) {
-      return React__default['default'].createElement(context.Consumer, null, function (theme) {
+    var withTheme = React.forwardRef(function (props, ref) {
+      return React.createElement(context.Consumer, null, function (theme) {
         process.env.NODE_ENV !== "production" ? warning(isObject$1(theme), '[theming] Please use withTheme only with the ThemeProvider') : void 0;
-        return React__default['default'].createElement(Component, _extends({
+        return React.createElement(Component, _extends({
           theme: theme,
           ref: ref
         }, props));
@@ -1910,7 +1896,7 @@ function createWithTheme(context) {
 
 function createUseTheme(context) {
   var useTheme = function useTheme() {
-    var theme = React__default['default'].useContext(context);
+    var theme = React.useContext(context);
     process.env.NODE_ENV !== "production" ? warning(isObject$1(theme), '[theming] Please use useTheme only with the ThemeProvider') : void 0;
     return theme;
   };
@@ -1927,7 +1913,7 @@ function createTheming(context) {
   };
 }
 
-var ThemeContext = React.createContext();
+var ThemeContext = createContext();
 
 createTheming(ThemeContext);
 
@@ -2162,7 +2148,7 @@ function () {
 var StyleRule =
 /*#__PURE__*/
 function (_BaseStyleRule) {
-  _inheritsLoose__default['default'](StyleRule, _BaseStyleRule);
+  _inheritsLoose$1(StyleRule, _BaseStyleRule);
 
   function StyleRule(key, style, options) {
     var _this;
@@ -2179,7 +2165,7 @@ function (_BaseStyleRule) {
     if (selector) {
       _this.selectorText = selector;
     } else if (scoped !== false) {
-      _this.id = generateId(_assertThisInitialized__default['default'](_assertThisInitialized__default['default'](_this)), sheet);
+      _this.id = generateId(_assertThisInitialized$1(_assertThisInitialized$1(_this)), sheet);
       _this.selectorText = "." + escape(_this.id);
     }
 
@@ -2235,13 +2221,13 @@ function (_BaseStyleRule) {
   _proto2.toString = function toString(options) {
     var sheet = this.options.sheet;
     var link = sheet ? sheet.options.link : false;
-    var opts = link ? _extends__default['default']({}, options, {
+    var opts = link ? _extends$1({}, options, {
       allowEmpty: true
     }) : options;
     return toCss(this.selectorText, this.style, opts);
   };
 
-  _createClass__default['default'](StyleRule, [{
+  _createClass(StyleRule, [{
     key: "selector",
     set: function set(selector) {
       if (selector === this.selectorText) return;
@@ -2303,7 +2289,7 @@ function () {
 
     this.query = options.name || "@" + this.at;
     this.options = options;
-    this.rules = new RuleList(_extends__default['default']({}, options, {
+    this.rules = new RuleList(_extends$1({}, options, {
       parent: this
     }));
 
@@ -2409,12 +2395,12 @@ function () {
         sheet = options.sheet,
         generateId = options.generateId;
     this.id = scoped === false ? this.name : escape(generateId(this, sheet));
-    this.rules = new RuleList(_extends__default['default']({}, options, {
+    this.rules = new RuleList(_extends$1({}, options, {
       parent: this
     }));
 
     for (var name in frames) {
-      this.rules.add(name, frames[name], _extends__default['default']({}, options, {
+      this.rules.add(name, frames[name], _extends$1({}, options, {
         parent: this
       }));
     }
@@ -2512,7 +2498,7 @@ var plugin = {
 var KeyframeRule =
 /*#__PURE__*/
 function (_BaseStyleRule) {
-  _inheritsLoose__default['default'](KeyframeRule, _BaseStyleRule);
+  _inheritsLoose$1(KeyframeRule, _BaseStyleRule);
 
   function KeyframeRule() {
     var _this;
@@ -2534,7 +2520,7 @@ function (_BaseStyleRule) {
   _proto.toString = function toString(options) {
     var sheet = this.options.sheet;
     var link = sheet ? sheet.options.link : false;
-    var opts = link ? _extends__default['default']({}, options, {
+    var opts = link ? _extends$1({}, options, {
       allowEmpty: true
     }) : options;
     return toCss(this.key, this.style, opts);
@@ -2734,7 +2720,7 @@ function () {
         generateId = _this$options.generateId,
         scoped = _this$options.scoped;
 
-    var options = _extends__default['default']({
+    var options = _extends$1({
       classes: this.classes,
       parent: parent,
       sheet: sheet,
@@ -2960,7 +2946,7 @@ function () {
     this.deployed = false;
     this.classes = {};
     this.keyframes = {};
-    this.options = _extends__default['default']({}, options, {
+    this.options = _extends$1({}, options, {
       sheet: this,
       parent: this,
       classes: this.classes,
@@ -3334,7 +3320,7 @@ function () {
   _proto.toString = function toString(_temp) {
     var _ref = _temp === void 0 ? {} : _temp,
         attached = _ref.attached,
-        options = _objectWithoutPropertiesLoose__default['default'](_ref, ["attached"]);
+        options = _objectWithoutPropertiesLoose(_ref, ["attached"]);
 
     var css = '';
 
@@ -3352,7 +3338,7 @@ function () {
     return css;
   };
 
-  _createClass__default['default'](SheetsRegistry, [{
+  _createClass(SheetsRegistry, [{
     key: "index",
 
     /**
@@ -3937,7 +3923,7 @@ function () {
     }
 
     if (options.id) {
-      this.options.id = _extends__default['default']({}, this.options.id, options.id);
+      this.options.id = _extends$1({}, this.options.id, options.id);
     }
 
     if (options.createGenerateId || options.id) {
@@ -3971,7 +3957,7 @@ function () {
       index = registry.index === 0 ? 0 : registry.index + 1;
     }
 
-    var sheet = new StyleSheet(styles, _extends__default['default']({}, options, {
+    var sheet = new StyleSheet(styles, _extends$1({}, options, {
       jss: this,
       generateId: options.generateId || this.generateId,
       insertionPoint: this.options.insertionPoint,
@@ -4013,7 +3999,7 @@ function () {
     } // $FlowFixMe[incompatible-type]
 
 
-    var ruleOptions = _extends__default['default']({}, options, {
+    var ruleOptions = _extends$1({}, options, {
       name: name,
       jss: this,
       Renderer: this.options.Renderer
@@ -4132,7 +4118,7 @@ function () {
     }
   };
 
-  _createClass__default['default'](SheetsManager, [{
+  _createClass(SheetsManager, [{
     key: "size",
     get: function get() {
       return this.length;
@@ -4372,7 +4358,7 @@ function () {
     this.isProcessed = false;
     this.key = key;
     this.options = options;
-    this.rules = new RuleList(_extends__default['default']({}, options, {
+    this.rules = new RuleList(_extends$1({}, options, {
       parent: this
     }));
 
@@ -4435,7 +4421,7 @@ function () {
     this.key = key;
     this.options = options;
     var selector = key.substr(atPrefix.length);
-    this.rule = options.jss.createRule(selector, style, _extends__default['default']({}, options, {
+    this.rule = options.jss.createRule(selector, style, _extends$1({}, options, {
       parent: this
     }));
   }
@@ -4470,7 +4456,7 @@ function handleNestedGlobalContainerRule(rule, sheet) {
   if (!rules) return;
 
   for (var name in rules) {
-    sheet.addRule(name, rules[name], _extends__default['default']({}, options, {
+    sheet.addRule(name, rules[name], _extends$1({}, options, {
       selector: addScope(name, rule.selector)
     }));
   }
@@ -4485,7 +4471,7 @@ function handlePrefixedGlobalRule(rule, sheet) {
   for (var prop in style) {
     if (prop[0] !== '@' || prop.substr(0, at.length) !== at) continue;
     var selector = addScope(prop.substr(at.length), rule.selector);
-    sheet.addRule(selector, style[prop], _extends__default['default']({}, options, {
+    sheet.addRule(selector, style[prop], _extends$1({}, options, {
       selector: selector
     }));
     delete style[prop];
@@ -4571,7 +4557,7 @@ function mergeExtend(style, rule, sheet, newStyle) {
   if (Array.isArray(style.extend)) {
     for (var index = 0; index < style.extend.length; index++) {
       var singleExtend = style.extend[index];
-      var singleStyle = typeof singleExtend === 'string' ? _extends__default['default']({}, style, {
+      var singleStyle = typeof singleExtend === 'string' ? _extends$1({}, style, {
         extend: singleExtend
       }) : style.extend[index];
       extend(singleStyle, rule, sheet, newStyle);
@@ -4725,14 +4711,14 @@ function jssNested() {
 
   function getOptions(rule, container, prevOptions) {
     // Options has been already created, now we only increase index.
-    if (prevOptions) return _extends__default['default']({}, prevOptions, {
+    if (prevOptions) return _extends$1({}, prevOptions, {
       index: prevOptions.index + 1 // $FlowFixMe[prop-missing]
 
     });
     var nestingLevel = rule.options.nestingLevel;
     nestingLevel = nestingLevel === undefined ? 1 : nestingLevel + 1;
 
-    var options = _extends__default['default']({}, rule.options, {
+    var options = _extends$1({}, rule.options, {
       nestingLevel: nestingLevel,
       index: container.indexOf(rule) + 1 // We don't need the parent name to be set options for chlid.
 
@@ -4762,7 +4748,7 @@ function jssNested() {
         if (!replaceRef) replaceRef = getReplaceRef(container, sheet); // Replace all $refs.
 
         selector = selector.replace(refRegExp, replaceRef);
-        container.addRule(selector, style[prop], _extends__default['default']({}, options, {
+        container.addRule(selector, style[prop], _extends$1({}, options, {
           selector: selector
         }));
       } else if (isNestedConditional) {
@@ -5973,7 +5959,7 @@ var propertyDetectors = plugins.filter(function (p) {
 var noPrefill = plugins.filter(function (p) {
   return p.noPrefill;
 }).reduce(function (a, p) {
-  a.push.apply(a, _toConsumableArray__default['default'](p.noPrefill));
+  a.push.apply(a, _toConsumableArray(p.noPrefill));
   return a;
 }, []);
 
@@ -6232,7 +6218,7 @@ var create = function create(options) {
 
 create$1(create());
 
-var JssContext = React.createContext({
+var JssContext = createContext({
   classNamePrefix: '',
   disableStylesGeneration: false
 });
@@ -6341,7 +6327,7 @@ function getSheetOptions(options, link) {
   var meta = '';
   if (options.name) meta = options.name + ", ";
   meta += typeof options.styles === 'function' ? 'Themed' : 'Unthemed';
-  return _extends__default['default']({}, options.sheetOptions, {
+  return _extends$1({}, options.sheetOptions, {
     index: options.index,
     meta: meta,
     classNamePrefix: classNamePrefix,
@@ -6436,7 +6422,7 @@ var getSheetClasses = function getSheetClasses(sheet, dynamicRules) {
   return classes;
 };
 
-var useEffectOrLayoutEffect = isBrowser ? React.useLayoutEffect : React.useEffect;
+var useEffectOrLayoutEffect = isBrowser ? useLayoutEffect : useEffect;
 var noTheme$1 = {};
 
 var createUseStyles = function createUseStyles(styles, options) {
@@ -6449,22 +6435,22 @@ var createUseStyles = function createUseStyles(styles, options) {
       index = _options$index === void 0 ? getSheetIndex() : _options$index,
       theming = _options.theming,
       name = _options.name,
-      sheetOptions = _objectWithoutPropertiesLoose__default['default'](_options, ["index", "theming", "name"]);
+      sheetOptions = _objectWithoutPropertiesLoose(_options, ["index", "theming", "name"]);
 
   var ThemeContext$1 = theming && theming.context || ThemeContext;
   var useTheme = typeof styles === 'function' ? // $FlowFixMe[incompatible-return]
   function () {
-    return React.useContext(ThemeContext$1) || noTheme$1;
+    return useContext(ThemeContext$1) || noTheme$1;
   } : // $FlowFixMe[incompatible-return]
   function () {
     return noTheme$1;
   };
   return function useStyles(data) {
-    var isFirstMount = React.useRef(true);
-    var context = React.useContext(JssContext);
+    var isFirstMount = useRef(true);
+    var context = useContext(JssContext);
     var theme = useTheme();
 
-    var _React$useMemo = React.useMemo(function () {
+    var _React$useMemo = useMemo(function () {
       var newSheet = createStyleSheet({
         context: context,
         styles: styles,
@@ -6514,9 +6500,9 @@ var createUseStyles = function createUseStyles(styles, options) {
       );
     }, [sheet]);
     var classes = sheet && dynamicRules ? getSheetClasses(sheet, dynamicRules) : {};
-    React.useDebugValue(classes);
-    React.useDebugValue(theme === noTheme$1 ? 'No theme' : theme);
-    React.useEffect(function () {
+    useDebugValue(classes);
+    useDebugValue(theme === noTheme$1 ? 'No theme' : theme);
+    useEffect(function () {
       isFirstMount.current = false;
     });
     return classes;
@@ -6559,10 +6545,10 @@ var Hand = function (_a) {
     // name,
     length = _c === void 0 ? 100 : _c, _d = _a.oppositeLength, oppositeLength = _d === void 0 ? 10 : _d, _e = _a.width, width = _e === void 0 ? 1 : _e, classes = _a.classes;
     var handClasses = useStyle$2();
-    return (React__default['default'].createElement("div", { className: clsx(handClasses.hand, classes === null || classes === void 0 ? void 0 : classes.hand), style: {
+    return (React.createElement("div", { className: clsx(handClasses.hand, classes === null || classes === void 0 ? void 0 : classes.hand), style: {
             transform: "rotate(" + angle + "deg)",
         } },
-        React__default['default'].createElement("div", { className: clsx(handClasses.body, classes === null || classes === void 0 ? void 0 : classes.body), style: {
+        React.createElement("div", { className: clsx(handClasses.body, classes === null || classes === void 0 ? void 0 : classes.body), style: {
                 width: width + "px",
                 top: 50 - length / 2 + "%",
                 bottom: 50 - oppositeLength / 2 + "%",
@@ -6599,15 +6585,15 @@ var Mark = function (_a) {
     // name,
     width = _c === void 0 ? 1 : _c, number = _a.number, classes = _a.classes;
     var markClasses = useStyle$1();
-    return (React__default['default'].createElement("div", { className: clsx(markClasses.mark, classes === null || classes === void 0 ? void 0 : classes.mark), style: {
+    return (React.createElement("div", { className: clsx(markClasses.mark, classes === null || classes === void 0 ? void 0 : classes.mark), style: {
             transform: "rotate(" + angle + "deg)",
         } },
-        React__default['default'].createElement("div", { className: clsx(markClasses.body, classes === null || classes === void 0 ? void 0 : classes.body), style: {
+        React.createElement("div", { className: clsx(markClasses.body, classes === null || classes === void 0 ? void 0 : classes.body), style: {
                 width: width + "px",
                 top: 0,
                 bottom: 100 - length / 2 + "%",
             } }),
-        number && (React__default['default'].createElement("div", { className: markClasses.number, style: {
+        number && (React.createElement("div", { className: markClasses.number, style: {
                 transform: "rotate(-" + angle + "deg)",
                 top: length / 2 + "%",
             } }, number))));
@@ -6654,7 +6640,7 @@ var Clock = function (_a) {
         for (var i = 1; i <= 60; i += 1) {
             var isHourMark = renderHourMarks && !(i % 5);
             if (!isHourMark) {
-                minuteMarks.push(React__default['default'].createElement(Mark, { key: "minute_" + i, angle: i * 6, length: minuteMarksLength, name: "minute", width: minuteMarksWidth, classes: classes === null || classes === void 0 ? void 0 : classes.marker }));
+                minuteMarks.push(React.createElement(Mark, { key: "minute_" + i, angle: i * 6, length: minuteMarksLength, name: "minute", width: minuteMarksWidth, classes: classes === null || classes === void 0 ? void 0 : classes.marker }));
             }
         }
         return minuteMarks;
@@ -6665,12 +6651,12 @@ var Clock = function (_a) {
         }
         var hourMarks = [];
         for (var i = 1; i <= 12; i += 1) {
-            hourMarks.push(React__default['default'].createElement(Mark, { key: "hour_" + i, angle: i * 30, length: hourMarksLength, name: "hour", number: renderNumbers ? i : null, width: hourMarksWidth, classes: classes === null || classes === void 0 ? void 0 : classes.marker }));
+            hourMarks.push(React.createElement(Mark, { key: "hour_" + i, angle: i * 30, length: hourMarksLength, name: "hour", number: renderNumbers ? i : null, width: hourMarksWidth, classes: classes === null || classes === void 0 ? void 0 : classes.marker }));
         }
         return hourMarks;
     }
     function renderFace() {
-        return (React__default['default'].createElement("div", { className: clockClasses.face },
+        return (React.createElement("div", { className: clockClasses.face },
             renderMinuteMarksFn(),
             renderHourMarksFn()));
     }
@@ -6678,7 +6664,7 @@ var Clock = function (_a) {
         var angle = value
             ? umd.getHours(value) * 30 + umd.getMinutes(value) / 2 + umd.getSeconds(value) / 600
             : 0;
-        return (React__default['default'].createElement(Hand, { angle: angle, length: hourHandLength, name: "hour", oppositeLength: hourHandOppositeLength, width: hourHandWidth, classes: classes === null || classes === void 0 ? void 0 : classes.handle }));
+        return (React.createElement(Hand, { angle: angle, length: hourHandLength, name: "hour", oppositeLength: hourHandOppositeLength, width: hourHandWidth, classes: classes === null || classes === void 0 ? void 0 : classes.handle }));
     }
     function renderMinuteHandFn() {
         if (!renderMinuteHand) {
@@ -6687,17 +6673,17 @@ var Clock = function (_a) {
         var angle = value
             ? umd.getHours(value) * 360 + umd.getMinutes(value) * 6 + umd.getSeconds(value) / 10
             : 0;
-        return (React__default['default'].createElement(Hand, { angle: angle, length: minuteHandLength, name: "minute", oppositeLength: minuteHandOppositeLength, width: minuteHandWidth, classes: classes === null || classes === void 0 ? void 0 : classes.handle }));
+        return (React.createElement(Hand, { angle: angle, length: minuteHandLength, name: "minute", oppositeLength: minuteHandOppositeLength, width: minuteHandWidth, classes: classes === null || classes === void 0 ? void 0 : classes.handle }));
     }
     function renderSecondHandFn() {
         if (!renderSecondHand) {
             return null;
         }
         var angle = value ? umd.getMinutes(value) * 360 + umd.getSeconds(value) * 6 : 0;
-        return (React__default['default'].createElement(Hand, { angle: angle, length: secondHandLength, name: "second", classes: __assign({ body: clockClasses.secondHand }, classes === null || classes === void 0 ? void 0 : classes.handle), oppositeLength: secondHandOppositeLength, width: secondHandWidth }));
+        return (React.createElement(Hand, { angle: angle, length: secondHandLength, name: "second", classes: __assign({ body: clockClasses.secondHand }, classes === null || classes === void 0 ? void 0 : classes.handle), oppositeLength: secondHandOppositeLength, width: secondHandWidth }));
     }
     function renderMiddleCircle() {
-        return (React__default['default'].createElement("div", { className: clsx(clockClasses.middleCircle, classes === null || classes === void 0 ? void 0 : classes.middleCircle), style: {
+        return (React.createElement("div", { className: clsx(clockClasses.middleCircle, classes === null || classes === void 0 ? void 0 : classes.middleCircle), style: {
                 width: size / middleCircleRatio,
                 height: size / middleCircleRatio,
                 borderRadius: size / (2 * middleCircleRatio),
@@ -6705,7 +6691,7 @@ var Clock = function (_a) {
                 top: "calc(50% - " + size / (2 * middleCircleRatio) + "px)",
             } }));
     }
-    return (React__default['default'].createElement("time", { className: clsx(clockClasses.clockRoot, className, (_b = classes === null || classes === void 0 ? void 0 : classes.clock) === null || _b === void 0 ? void 0 : _b.root), dateTime: value instanceof Date ? value.toISOString() : value, style: {
+    return (React.createElement("time", { className: clsx(clockClasses.clockRoot, className, (_b = classes === null || classes === void 0 ? void 0 : classes.clock) === null || _b === void 0 ? void 0 : _b.root), dateTime: value instanceof Date ? value.toISOString() : value, style: {
             width: size + "px",
             height: size + "px",
             fontSize: size / fontSizeRatio,
@@ -6718,5 +6704,5 @@ var Clock = function (_a) {
 };
 // Clock.displayName = "Clock";
 
-exports.default = Clock;
-//# sourceMappingURL=index.js.map
+export default Clock;
+//# sourceMappingURL=index.esm.js.map

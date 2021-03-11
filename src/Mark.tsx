@@ -27,14 +27,14 @@ const useStyle = createUseStyles({
   },
 });
 
-export default function Mark({
+export const Mark = ({
   angle = 0,
   length,
   // name,
   width = 1,
   number,
   classes,
-}: MarkProps) {
+}: MarkProps) => {
   const markClasses = useStyle();
   return (
     <div
@@ -64,4 +64,4 @@ export default function Mark({
       )}
     </div>
   );
-}
+};

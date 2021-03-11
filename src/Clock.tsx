@@ -2,8 +2,8 @@ import React from "react";
 import clsx from "clsx";
 import { getHours, getMinutes, getSeconds } from "@wojtekmaj/date-utils";
 
-import Hand from "./Hand";
-import Mark from "./Mark";
+import { Hand } from "./Hand";
+import { Mark } from "./Mark";
 
 import { createUseStyles } from "react-jss";
 import { ClockProps } from "./types";
@@ -39,7 +39,7 @@ const useStyle = createUseStyles({
   },
 });
 
-export default function Clock({
+export const Clock = ({
   className,
   classes,
   hourHandLength = 70,
@@ -64,7 +64,7 @@ export default function Clock({
   secondHandWidth = 2,
   size = 150,
   value,
-}: ClockProps) {
+}: ClockProps) => {
   const clockClasses = useStyle();
   function renderMinuteMarksFn() {
     if (!renderMinuteMarks) {
@@ -210,6 +210,6 @@ export default function Clock({
       {renderMiddleCircle()}
     </time>
   );
-}
+};
 
-Clock.displayName = "Clock";
+// Clock.displayName = "Clock";

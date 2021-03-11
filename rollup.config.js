@@ -9,7 +9,7 @@ import typescript from 'rollup-plugin-typescript2';
 import pkg from './package.json';
 
 const isProd = process.env.NODE_ENV === 'production';
-const processEnv = isProd ? 'production' : 'development';
+// const processEnv = isProd ? 'production' : 'development';
 
 export default [
   {
@@ -35,9 +35,7 @@ export default [
       },
     ],
     plugins: [
-      replace({
-        __ENV__: JSON.stringify(processEnv),
-      }),
+      
       bundleSize(),
       postcss({
         minimize: isProd,
