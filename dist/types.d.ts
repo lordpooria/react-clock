@@ -1,5 +1,13 @@
 import { HandleClasses } from "./HandTypes";
 import { MarkerClasses } from "./MarkTypes";
+export declare type ClockClasses = {
+    clock?: {
+        root?: string;
+    };
+    marker?: MarkerClasses;
+    handle?: HandleClasses;
+    middleCircle?: string;
+};
 export declare type ClockValue = string | Date;
 export interface ClockProps<T = ClockValue> {
     /**
@@ -7,16 +15,9 @@ export interface ClockProps<T = ClockValue> {
      */
     className?: string | string[];
     /**
-     * Class name(s) that will be added along with "react-clock" to the main React-Clock <time> element.
+     * you could set classes for clock face and clock wrapper and handle and markers
      */
-    classes?: {
-        clock?: {
-            root?: string;
-        };
-        marker?: MarkerClasses;
-        handle?: HandleClasses;
-        middleCircle?: string;
-    };
+    classes?: ClockClasses;
     /**
      * Hour hand length, in %.
      * @default 50

@@ -6,6 +6,12 @@
 import { HandleClasses } from "./HandTypes";
 import { MarkerClasses } from "./MarkTypes";
 
+export type ClockClasses = {
+  clock?: { root?: string };
+  marker?: MarkerClasses;
+  handle?: HandleClasses;
+  middleCircle?: string;
+};
 // export default function Clock(props: ClockProps): JSX.Element;
 export type ClockValue = string | Date;
 export interface ClockProps<T = ClockValue> {
@@ -14,14 +20,9 @@ export interface ClockProps<T = ClockValue> {
    */
   className?: string | string[];
   /**
-   * Class name(s) that will be added along with "react-clock" to the main React-Clock <time> element.
+   * you could set classes for clock face and clock wrapper and handle and markers
    */
-  classes?: {
-    clock?: { root?: string };
-    marker?: MarkerClasses;
-    handle?: HandleClasses;
-    middleCircle?: string;
-  };
+  classes?: ClockClasses;
   /**
    * Hour hand length, in %.
    * @default 50
@@ -58,7 +59,7 @@ export interface ClockProps<T = ClockValue> {
   minuteHandOppositeLength?: number;
   /**
    * Minute hand width ratio respect to size.
-   * 
+   *
    */
   minuteHandWidthRatio?: number;
   /**
@@ -68,7 +69,7 @@ export interface ClockProps<T = ClockValue> {
   minuteMarksLength?: number;
   /**
    * Minute marks width ratio respect to size.
-   * 
+   *
    */
   minuteMarksWidthRatio?: number;
   /**
@@ -118,13 +119,13 @@ export interface ClockProps<T = ClockValue> {
   size?: number;
   /**
    * Clock size, in pixels. this value divided by size result the size of middle circle
-   * 
+   *
    */
   middleCircleRatio?: number;
   /**
    * number if prop render number is true has a value based on size that is ratio
-   * of size 
-   * 
+   * of size
+   *
    */
   fontSizeRatio?: number;
   /**
