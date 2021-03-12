@@ -38,7 +38,7 @@ export const Hand = ({
       }}
     >
       <div
-        className={clsx(handClasses.body, classes?.body)}
+        className={clsx(handClasses.body, classes?.handBody)}
         style={{
           width: `${width}px`,
           top: `${50 - length / 2}%`,

@@ -1,6 +1,6 @@
 export declare type MarkerClasses = {
     mark?: string;
-    body?: string;
+    markBody?: string;
 };
 export interface MarkProps {
     angle?: number;

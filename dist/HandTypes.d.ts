@@ -1,6 +1,6 @@
 export declare type HandleClasses = {
     hand?: string;
-    body?: string;
+    handBody?: string;
 };
 export interface HandleProps {
     angle?: number;

@@ -1,4 +1,4 @@
-export type HandleClasses = { hand?: string; body?: string };
+export type HandleClasses = { hand?: string; handBody?: string };
 export interface HandleProps {
   angle?: number;
   name?: string;

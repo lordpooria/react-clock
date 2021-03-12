@@ -1,11 +1,10 @@
 import { HandleClasses } from "./HandTypes";
 import { MarkerClasses } from "./MarkTypes";
-export declare type ClockClasses = {
-    clock?: {
-        root?: string;
-    };
-    marker?: MarkerClasses;
-    handle?: HandleClasses;
+export declare type ClockStyle = {
+    root?: string;
+    clockFace?: string;
+};
+export declare type ClockClasses = MarkerClasses & HandleClasses & ClockStyle & {
     middleCircle?: string;
 };
 export declare type ClockValue = string | Date;

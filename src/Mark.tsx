@@ -44,7 +44,7 @@ export const Mark = ({
       }}
     >
       <div
-        className={clsx(markClasses.body, classes?.body)}
+        className={clsx(markClasses.body, classes?.markBody)}
         style={{
           width: `${width}px`,
           top: 0,

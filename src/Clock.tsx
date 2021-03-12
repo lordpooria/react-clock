@@ -89,7 +89,7 @@ export const Clock = ({
             length={minuteMarksLength}
             name="minute"
             width={size / minuteMarksWidthRatio}
-            classes={classes?.marker}
+            classes={{ mark: classes?.mark, markBody: classes?.markBody }}
           />
         );
       }
@@ -112,7 +112,7 @@ export const Clock = ({
           name="hour"
           number={renderNumbers ? i : null}
           width={size / hourMarksWidthRatio}
-          classes={classes?.marker}
+          classes={{ mark: classes?.mark, markBody: classes?.markBody }}
         />
       );
     }
@@ -121,7 +121,7 @@ export const Clock = ({
 
   function renderFace() {
     return (
-      <div className={clockClasses.face}>
+      <div className={clsx(clockClasses.face, classes?.clockFace)}>
         {renderMinuteMarksFn()}
         {renderHourMarksFn()}
       </div>
@@ -140,7 +140,7 @@ export const Clock = ({
         name="hour"
         oppositeLength={hourHandOppositeLength}
         width={size / hourHandWidthRatio}
-        classes={classes?.handle}
+        classes={{ hand: classes?.hand, handBody: classes?.handBody }}
       />
     );
   }
@@ -161,7 +161,7 @@ export const Clock = ({
         name="minute"
         oppositeLength={minuteHandOppositeLength}
         width={size / minuteHandWidthRatio}
-        classes={classes?.handle}
+        classes={{ hand: classes?.hand, handBody: classes?.handBody }}
       />
     );
   }
@@ -178,7 +178,10 @@ export const Clock = ({
         angle={angle}
         length={secondHandLength}
         name="second"
-        classes={{ body: clockClasses.secondHand, ...classes?.handle }}
+        classes={{
+          handBody: clsx(clockClasses.secondHand, classes?.handBody),
+          hand: classes?.hand,
+        }}
         oppositeLength={secondHandOppositeLength}
         width={size / secondHandWidthRatio}
       />
@@ -201,7 +204,7 @@ export const Clock = ({
 
   return (
     <time
-      className={clsx(clockClasses.clockRoot, className, classes?.clock?.root)}
+      className={clsx(clockClasses.clockRoot, className, classes?.root)}
       dateTime={value instanceof Date ? value.toISOString() : value}
       style={{
         width: `${size}px`,

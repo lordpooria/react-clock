@@ -6,12 +6,12 @@
 import { HandleClasses } from "./HandTypes";
 import { MarkerClasses } from "./MarkTypes";
 
-export type ClockClasses = {
-  clock?: { root?: string };
-  marker?: MarkerClasses;
-  handle?: HandleClasses;
-  middleCircle?: string;
-};
+export type ClockStyle = { root?: string; clockFace?: string };
+export type ClockClasses = MarkerClasses &
+  HandleClasses &
+  ClockStyle & {
+    middleCircle?: string;
+  };
 // export default function Clock(props: ClockProps): JSX.Element;
 export type ClockValue = string | Date;
 export interface ClockProps<T = ClockValue> {

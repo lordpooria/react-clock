@@ -1,4 +1,4 @@
-export type MarkerClasses = { mark?: string; body?: string };
+export type MarkerClasses = { mark?: string; markBody?: string };
 
 export interface MarkProps {
   angle?: number;
