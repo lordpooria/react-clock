@@ -53,7 +53,7 @@ const useStyle = createUseStyles({
 
 export const Clock = ({
   className,
-  classes,
+  classes = {},
   hourHandLength = 70,
   hourHandOppositeLength,
   hourHandWidthRatio = HOUR_HAND_WIDTH_RATIO,
@@ -129,8 +129,8 @@ export const Clock = ({
     return (
       <div
         className={clsx(clockClasses.face, {
-          [clockClasses.clockFace]: !classes.clockFace,
-          [classes.clockFace]: classes.clockFace,
+          [clockClasses.clockFace]: !classes?.clockFace,
+          [classes.clockFace as string]: classes?.clockFace,
         })}
       >
         {renderMinuteMarksFn()}
@@ -192,7 +192,7 @@ export const Clock = ({
         classes={{
           handBody: clsx(classes?.handBody, {
             [clockClasses.secondHand]: !classes?.secondMarkClasses,
-            [classes.secondMarkClasses]: classes?.secondMarkClasses,
+            [classes.secondMarkClasses as string]: classes?.secondMarkClasses,
           }),
           hand: classes?.hand,
         }}
@@ -205,8 +205,8 @@ export const Clock = ({
     return (
       <div
         className={clsx(clockClasses.clockCircle, {
-          [classes.middleCircle]: classes.middleCircle,
-          [clockClasses.middleCircle]: !classes.middleCircle,
+          [classes.middleCircle as string]: classes?.middleCircle,
+          [clockClasses.middleCircle]: !classes?.middleCircle,
         })}
         style={{
           width: size / middleCircleRatio,
@@ -222,7 +222,7 @@ export const Clock = ({
   return (
     <time
       className={clsx(clockClasses.clockRoot, className, {
-        [classes.root]: classes.root,
+        [classes.root as string]: classes.root,
         [clockClasses.root]: !classes.root,
       })}
       dateTime={value instanceof Date ? value.toISOString() : value}

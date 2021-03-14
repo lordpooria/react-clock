@@ -6,6 +6,7 @@ export declare type ClockStyle = {
 };
 export declare type ClockClasses = MarkerClasses & HandleClasses & ClockStyle & {
     middleCircle?: string;
+    secondMarkClasses?: string;
 };
 export declare type ClockValue = string | Date;
 export interface ClockProps<T = ClockValue> {

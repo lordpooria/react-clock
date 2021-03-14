@@ -6600,6 +6600,8 @@ var useStyle = createUseStyles({
     clockRoot: {
         display: "block",
         position: "relative",
+    },
+    root: {
         fontFamily: "arial",
         fontWeight: 500,
     },
@@ -6609,6 +6611,8 @@ var useStyle = createUseStyles({
         bottom: 0,
         left: 0,
         right: 0,
+    },
+    clockFace: {
         backgroundColor: "#FFF",
         borderRadius: "50%",
     },
@@ -6616,14 +6620,17 @@ var useStyle = createUseStyles({
         backgroundColor: ORANGE,
     },
     mark: {},
-    middleCircle: {
-        backgroundColor: ORANGE,
+    clockCircle: {
         position: "absolute",
         boxShadow: "1px 1px 1px rgba(0,0,0,0.3)",
     },
+    middleCircle: {
+        backgroundColor: ORANGE,
+    },
 });
 var Clock = function (_a) {
-    var className = _a.className, classes = _a.classes, _b = _a.hourHandLength, hourHandLength = _b === void 0 ? 70 : _b, hourHandOppositeLength = _a.hourHandOppositeLength, _c = _a.hourHandWidthRatio, hourHandWidthRatio = _c === void 0 ? HOUR_HAND_WIDTH_RATIO : _c, _d = _a.hourMarksLength, hourMarksLength = _d === void 0 ? 13 : _d, _e = _a.hourMarksWidthRatio, hourMarksWidthRatio = _e === void 0 ? HOUR_MARK_WIDTH_RATIO : _e, _f = _a.minuteHandLength, minuteHandLength = _f === void 0 ? 90 : _f, minuteHandOppositeLength = _a.minuteHandOppositeLength, _g = _a.minuteHandWidthRatio, minuteHandWidthRatio = _g === void 0 ? MINUTE_HAND_WIDTH_RATIO : _g, _h = _a.minuteMarksLength, minuteMarksLength = _h === void 0 ? 7 : _h, _j = _a.minuteMarksWidthRatio, minuteMarksWidthRatio = _j === void 0 ? MINUTE_MARK_WIDTH_RATIO : _j, _k = _a.renderHourMarks, renderHourMarks = _k === void 0 ? true : _k, _l = _a.renderMinuteHand, renderMinuteHand = _l === void 0 ? true : _l, _m = _a.renderMinuteMarks, renderMinuteMarks = _m === void 0 ? true : _m, renderNumbers = _a.renderNumbers, _o = _a.middleCircleRatio, middleCircleRatio = _o === void 0 ? MIDDLE_CIRCLE_RATIO : _o, _p = _a.fontSizeRatio, fontSizeRatio = _p === void 0 ? FONT_SIZE_RATIO : _p, _q = _a.renderSecondHand, renderSecondHand = _q === void 0 ? true : _q, _r = _a.secondHandLength, secondHandLength = _r === void 0 ? 97 : _r, secondHandOppositeLength = _a.secondHandOppositeLength, _s = _a.secondHandWidthRatio, secondHandWidthRatio = _s === void 0 ? SECOND_HAND_WIDTH_RATIO : _s, _t = _a.size, size = _t === void 0 ? 150 : _t, value = _a.value;
+    var _b;
+    var className = _a.className, _c = _a.classes, classes = _c === void 0 ? {} : _c, _d = _a.hourHandLength, hourHandLength = _d === void 0 ? 70 : _d, hourHandOppositeLength = _a.hourHandOppositeLength, _e = _a.hourHandWidthRatio, hourHandWidthRatio = _e === void 0 ? HOUR_HAND_WIDTH_RATIO : _e, _f = _a.hourMarksLength, hourMarksLength = _f === void 0 ? 13 : _f, _g = _a.hourMarksWidthRatio, hourMarksWidthRatio = _g === void 0 ? HOUR_MARK_WIDTH_RATIO : _g, _h = _a.minuteHandLength, minuteHandLength = _h === void 0 ? 90 : _h, minuteHandOppositeLength = _a.minuteHandOppositeLength, _j = _a.minuteHandWidthRatio, minuteHandWidthRatio = _j === void 0 ? MINUTE_HAND_WIDTH_RATIO : _j, _k = _a.minuteMarksLength, minuteMarksLength = _k === void 0 ? 7 : _k, _l = _a.minuteMarksWidthRatio, minuteMarksWidthRatio = _l === void 0 ? MINUTE_MARK_WIDTH_RATIO : _l, _m = _a.renderHourMarks, renderHourMarks = _m === void 0 ? true : _m, _o = _a.renderMinuteHand, renderMinuteHand = _o === void 0 ? true : _o, _p = _a.renderMinuteMarks, renderMinuteMarks = _p === void 0 ? true : _p, renderNumbers = _a.renderNumbers, _q = _a.middleCircleRatio, middleCircleRatio = _q === void 0 ? MIDDLE_CIRCLE_RATIO : _q, _r = _a.fontSizeRatio, fontSizeRatio = _r === void 0 ? FONT_SIZE_RATIO : _r, _s = _a.renderSecondHand, renderSecondHand = _s === void 0 ? true : _s, _t = _a.secondHandLength, secondHandLength = _t === void 0 ? 97 : _t, secondHandOppositeLength = _a.secondHandOppositeLength, _u = _a.secondHandWidthRatio, secondHandWidthRatio = _u === void 0 ? SECOND_HAND_WIDTH_RATIO : _u, _v = _a.size, size = _v === void 0 ? 150 : _v, value = _a.value;
     var clockClasses = useStyle();
     function renderMinuteMarksFn() {
         if (!renderMinuteMarks) {
@@ -6649,7 +6656,11 @@ var Clock = function (_a) {
         return hourMarks;
     }
     function renderFace() {
-        return (React__default['default'].createElement("div", { className: clsx(clockClasses.face, classes === null || classes === void 0 ? void 0 : classes.clockFace) },
+        var _a;
+        return (React__default['default'].createElement("div", { className: clsx(clockClasses.face, (_a = {},
+                _a[clockClasses.clockFace] = !(classes === null || classes === void 0 ? void 0 : classes.clockFace),
+                _a[classes.clockFace] = classes === null || classes === void 0 ? void 0 : classes.clockFace,
+                _a)) },
             renderMinuteMarksFn(),
             renderHourMarksFn()));
     }
@@ -6669,17 +6680,25 @@ var Clock = function (_a) {
         return (React__default['default'].createElement(Hand, { angle: angle, length: minuteHandLength, name: "minute", oppositeLength: minuteHandOppositeLength, width: size / minuteHandWidthRatio, classes: { hand: classes === null || classes === void 0 ? void 0 : classes.hand, handBody: classes === null || classes === void 0 ? void 0 : classes.handBody } }));
     }
     function renderSecondHandFn() {
+        var _a;
         if (!renderSecondHand) {
             return null;
         }
         var angle = value ? umd.getMinutes(value) * 360 + umd.getSeconds(value) * 6 : 0;
         return (React__default['default'].createElement(Hand, { angle: angle, length: secondHandLength, name: "second", classes: {
-                handBody: clsx(clockClasses.secondHand, classes === null || classes === void 0 ? void 0 : classes.handBody),
+                handBody: clsx(classes === null || classes === void 0 ? void 0 : classes.handBody, (_a = {},
+                    _a[clockClasses.secondHand] = !(classes === null || classes === void 0 ? void 0 : classes.secondMarkClasses),
+                    _a[classes.secondMarkClasses] = classes === null || classes === void 0 ? void 0 : classes.secondMarkClasses,
+                    _a)),
                 hand: classes === null || classes === void 0 ? void 0 : classes.hand,
             }, oppositeLength: secondHandOppositeLength, width: size / secondHandWidthRatio }));
     }
     function renderMiddleCircle() {
-        return (React__default['default'].createElement("div", { className: clsx(clockClasses.middleCircle, classes === null || classes === void 0 ? void 0 : classes.middleCircle), style: {
+        var _a;
+        return (React__default['default'].createElement("div", { className: clsx(clockClasses.clockCircle, (_a = {},
+                _a[classes.middleCircle] = classes === null || classes === void 0 ? void 0 : classes.middleCircle,
+                _a[clockClasses.middleCircle] = !(classes === null || classes === void 0 ? void 0 : classes.middleCircle),
+                _a)), style: {
                 width: size / middleCircleRatio,
                 height: size / middleCircleRatio,
                 borderRadius: size / (2 * middleCircleRatio),
@@ -6687,7 +6706,10 @@ var Clock = function (_a) {
                 top: "calc(50% - " + size / (2 * middleCircleRatio) + "px)",
             } }));
     }
-    return (React__default['default'].createElement("time", { className: clsx(clockClasses.clockRoot, className, classes === null || classes === void 0 ? void 0 : classes.root), dateTime: value instanceof Date ? value.toISOString() : value, style: {
+    return (React__default['default'].createElement("time", { className: clsx(clockClasses.clockRoot, className, (_b = {},
+            _b[classes.root] = classes.root,
+            _b[clockClasses.root] = !classes.root,
+            _b)), dateTime: value instanceof Date ? value.toISOString() : value, style: {
             width: size + "px",
             height: size + "px",
             fontSize: size / fontSizeRatio,
