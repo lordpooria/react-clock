@@ -33,10 +33,11 @@ const useStyle = createUseStyles({
     bottom: 0,
     left: 0,
     right: 0,
+    borderRadius: "50%",
   },
   clockFace: {
     backgroundColor: "#FFF",
-    borderRadius: "50%",
+   
   },
   secondHand: {
     backgroundColor: ORANGE,
