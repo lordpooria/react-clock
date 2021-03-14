@@ -11,6 +11,7 @@ export type ClockClasses = MarkerClasses &
   HandleClasses &
   ClockStyle & {
     middleCircle?: string;
+    secondMarkClasses?: string;
   };
 // export default function Clock(props: ClockProps): JSX.Element;
 export type ClockValue = string | Date;

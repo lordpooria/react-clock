@@ -22,6 +22,8 @@ const useStyle = createUseStyles({
   clockRoot: {
     display: "block",
     position: "relative",
+  },
+  root: {
     fontFamily: "arial",
     fontWeight: 500,
   },
@@ -31,6 +33,8 @@ const useStyle = createUseStyles({
     bottom: 0,
     left: 0,
     right: 0,
+  },
+  clockFace: {
     backgroundColor: "#FFF",
     borderRadius: "50%",
   },
@@ -38,10 +42,12 @@ const useStyle = createUseStyles({
     backgroundColor: ORANGE,
   },
   mark: {},
-  middleCircle: {
-    backgroundColor: ORANGE,
+  clockCircle: {
     position: "absolute",
     boxShadow: "1px 1px 1px rgba(0,0,0,0.3)",
+  },
+  middleCircle: {
+    backgroundColor: ORANGE,
   },
 });
 
@@ -121,7 +127,12 @@ export const Clock = ({
 
   function renderFace() {
     return (
-      <div className={clsx(clockClasses.face, classes?.clockFace)}>
+      <div
+        className={clsx(clockClasses.face, {
+          [clockClasses.clockFace]: !classes.clockFace,
+          [classes.clockFace]: classes.clockFace,
+        })}
+      >
         {renderMinuteMarksFn()}
         {renderHourMarksFn()}
       </div>
@@ -179,7 +190,10 @@ export const Clock = ({
         length={secondHandLength}
         name="second"
         classes={{
-          handBody: clsx(clockClasses.secondHand, classes?.handBody),
+          handBody: clsx(classes?.handBody, {
+            [clockClasses.secondHand]: !classes?.secondMarkClasses,
+            [classes.secondMarkClasses]: classes?.secondMarkClasses,
+          }),
           hand: classes?.hand,
         }}
         oppositeLength={secondHandOppositeLength}
@@ -190,7 +204,10 @@ export const Clock = ({
   function renderMiddleCircle() {
     return (
       <div
-        className={clsx(clockClasses.middleCircle, classes?.middleCircle)}
+        className={clsx(clockClasses.clockCircle, {
+          [classes.middleCircle]: classes.middleCircle,
+          [clockClasses.middleCircle]: !classes.middleCircle,
+        })}
         style={{
           width: size / middleCircleRatio,
           height: size / middleCircleRatio,
@@ -204,7 +221,10 @@ export const Clock = ({
 
   return (
     <time
-      className={clsx(clockClasses.clockRoot, className, classes?.root)}
+      className={clsx(clockClasses.clockRoot, className, {
+        [classes.root]: classes.root,
+        [clockClasses.root]: !classes.root,
+      })}
       dateTime={value instanceof Date ? value.toISOString() : value}
       style={{
         width: `${size}px`,
